@@ -33,6 +33,7 @@ namespace DataBace
             Form2 frm2 = new Form2();
             frm2.frm1Obj = this;
             frm2.ShowDialog();
+            ///ta
         }
 
         private void Button2_MouseEnter(object sender, EventArgs e)
