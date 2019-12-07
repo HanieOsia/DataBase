@@ -30,8 +30,8 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnChang = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
@@ -62,10 +62,19 @@
             this.panel1.Controls.Add(this.btnInsert);
             this.panel1.Controls.Add(this.btnSelect);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(653, 3);
+            this.panel1.Location = new System.Drawing.Point(654, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(137, 437);
+            this.panel1.Size = new System.Drawing.Size(136, 437);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 372);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.TabIndex = 3;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridView1
             // 
@@ -76,17 +85,9 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(644, 437);
+            this.dataGridView1.Size = new System.Drawing.Size(645, 437);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 372);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
-            this.label1.TabIndex = 3;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseDoubleClick);
             // 
             // btnChang
             // 
@@ -102,7 +103,7 @@
             this.btnChang.Text = "Chang";
             this.btnChang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChang.UseVisualStyleBackColor = false;
-            this.btnChang.Click += new System.EventHandler(this.Button1_Click);
+            this.btnChang.Click += new System.EventHandler(this.BtnChang_Click);
             this.btnChang.MouseEnter += new System.EventHandler(this.Button2_MouseEnter);
             this.btnChang.MouseLeave += new System.EventHandler(this.Button3_MouseLeave);
             // 
@@ -120,7 +121,7 @@
             this.btnInsert.Text = "Insert";
             this.btnInsert.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInsert.UseVisualStyleBackColor = false;
-            this.btnInsert.Click += new System.EventHandler(this.Button1_Click);
+            this.btnInsert.Click += new System.EventHandler(this.Btn_insert);
             this.btnInsert.MouseEnter += new System.EventHandler(this.Button2_MouseEnter);
             this.btnInsert.MouseLeave += new System.EventHandler(this.Button3_MouseLeave);
             // 
@@ -138,7 +139,7 @@
             this.btnSelect.Text = "Select";
             this.btnSelect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSelect.UseVisualStyleBackColor = false;
-            this.btnSelect.Click += new System.EventHandler(this.Button1_Click);
+            this.btnSelect.Click += new System.EventHandler(this.Btn_select);
             this.btnSelect.MouseEnter += new System.EventHandler(this.Button2_MouseEnter);
             this.btnSelect.MouseLeave += new System.EventHandler(this.Button3_MouseLeave);
             // 

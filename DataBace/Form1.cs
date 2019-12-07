@@ -13,29 +13,11 @@ namespace DataBace
 {
     public partial class Form1 : Form
     {
+        public string TblName { get; set; }
         public Form1()
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            PDBC dBC = new PDBC();
-            dBC.Connect();
-            DataTable dataTable = dBC.Select("SELECT [ID] [Name] [Last Name] FROM [tbl-name]");
-            label1.Text = "On Table :\ntbl-name ";
-            dBC.DC();
-            dataGridView1.DataSource = dataTable;
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            Form2 frm2 = new Form2();
-            frm2.frm1Obj = this;
-            frm2.ShowDialog();
-            ///ta
-        }
-
         private void Button2_MouseEnter(object sender, EventArgs e)
         {
             ((Button)sender).BackColor = Color.Teal;
@@ -45,6 +27,63 @@ namespace DataBace
         {
             ((Button)sender).BackColor = Color.LightSeaGreen;
         }
+        
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            PDBC dBC = new PDBC();
+            dBC.Connect();
+            TblName = "tbl - name";
+            DataTable dataTable = dBC.Select("SELECT [ID],[Name],[Last Name] FROM [tbl-name]");
+            dBC.DC();
+            label1.Text = "On Table :\ntbl-name ";
+            dataGridView1.DataSource = dataTable;
+        }
+
+        private void Btn_select(object sender, EventArgs e)
+        {
+            Form2 frm2 = new Form2();
+            frm2.frm1Obj = this;
+            frm2.ShowDialog();
+        }
+
+        private void Btn_insert(object sender, EventArgs e)
+        {
+            Frm_insert frm_insert = new Frm_insert(TblName);
+            frm_insert.ShowDialog();
+        }
+
+        private void DataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int i = e.RowIndex;
+            int j = e.ColumnIndex;
+
+            FrmChange frmChange;
+            if (dataGridView1.Columns[j].HeaderText.ToString().ToUpper().Contains("ID"))
+            {
+
+                frmChange = new FrmChange(TblName, dataGridView1.Columns[j].HeaderText, dataGridView1.Rows[i].Cells[j].Value.ToString(),
+                    $"id ={dataGridView1.Rows[i].Cells[0].Value.ToString()}",true);
+            }
+            else
+            {
+                frmChange = new FrmChange(TblName, dataGridView1.Columns[j].HeaderText, dataGridView1.Rows[i].Cells[j].Value.ToString(),
+                    $"id ={dataGridView1.Rows[i].Cells[0].Value.ToString()}",false);
+            }
+            frmChange.ShowDialog();
+
+            PDBC dBC = new PDBC();
+            dBC.Connect();
+            DataTable dataTable = dBC.Select($"Select * From {TblName}");
+            dBC.DC();
+            dataGridView1.DataSource = dataTable;
+            
+
+        }
+
+        private void BtnChang_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

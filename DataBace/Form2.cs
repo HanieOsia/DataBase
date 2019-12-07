@@ -17,13 +17,7 @@ namespace DataBace
         {
             InitializeComponent();
         }
-        
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
         public Form1 frm1Obj { get; set; }
-
         private void frmSelectLoad(object sender, EventArgs e)
         {
             ComboBoxObject cbo = new ComboBoxObject();
@@ -34,7 +28,13 @@ namespace DataBace
             cbo2.Value = "tbl-name";
             comboBox1.Items.Add(cbo);
             comboBox1.Items.Add(cbo2);
-            comboBox1.SelectedIndex = 0;
+            //comboBox1.SelectedIndex = 0;
+
+        }
+
+        
+        private void Label1_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -42,9 +42,10 @@ namespace DataBace
         {
             PDBC dBC = new PDBC();
             dBC.Connect();
-            DataTable dataTable = dBC.Select($"SELECT * FROM{((ComboBoxObject)(comboBox1.SelectedItem)).Value}");
+            DataTable dataTable = dBC.Select($"Select * From {((ComboBoxObject)(comboBox1.SelectedItem)).Value}");
             dBC.DC();
             frm1Obj.dataGridView1.DataSource = dataTable;
+            frm1Obj.TblName = ((ComboBoxObject)(comboBox1.SelectedItem)).Value.ToString();
             this.Hide();
         }
     }
