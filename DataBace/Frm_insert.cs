@@ -28,7 +28,7 @@ namespace DataBace
             DataTable dataTable_addData = new DataTable();
             _db = new PDBC();
             _db.Connect();
-            using (DataTable dataTable = _db.Select("SELECT  [ID]'آیدی',[Name]'نام',[Last Name]'نام خانوادگی' FROM [Honarjuyan].[dbo].[tbl-name]"))
+            using (DataTable dataTable = _db.Select("SELECT  [ID]'آیدی',[Name]'نام',[LastName]'نام خانوادگی' FROM [Honarjuyan].[dbo].[tblName1]"))
             {
                 dgv_name.DataSource = dataTable;
             }

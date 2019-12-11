@@ -80,6 +80,7 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("B Mitra", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(591, 0);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -90,8 +91,10 @@
             // 
             // txt_insert
             // 
+            this.txt_insert.BackColor = System.Drawing.Color.White;
             this.txt_insert.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_insert.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.txt_insert.ForeColor = System.Drawing.Color.Navy;
             this.txt_insert.Location = new System.Drawing.Point(3, 3);
             this.txt_insert.Name = "txt_insert";
             this.txt_insert.ReadOnly = true;
@@ -158,24 +161,27 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Navy;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Font = new System.Drawing.Font("B Mitra", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.button1.ForeColor = System.Drawing.Color.MediumBlue;
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(3, 254);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(748, 49);
             this.button1.TabIndex = 1;
             this.button1.Text = "ذخیره اطلاعات";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Frm_insert
             // 
+            this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Frm_insert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Insert ";
             this.Load += new System.EventHandler(this.Frm_insert_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

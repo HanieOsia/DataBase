@@ -17,20 +17,22 @@ namespace DataBace
         private string _TblCell { set; get; }
         private string _TblColVar { set; get; }
         private string _TblWhere { set; get; }
-        private bool _TblType { set; get; }
-        public FrmChange(string tblName, string tblCell, string tblColVar, string tblWhere, bool tblType)
+        private bool _TblIsInt { set; get; }
+        private string _TblCellEmpty = "-";
+        public FrmChange(string tblName, string tblCell, string tblColVar, string tblWhere, bool tblIsInt)
         {
             _TblName = tblName;
             _TblCell = tblCell;
-            _TblColVar =tblColVar;
+            _TblColVar = tblColVar;
             _TblWhere = tblWhere;
-            _TblType = tblType;
+            _TblIsInt = tblIsInt;
+            
             InitializeComponent();
         }
 
         private void FrmChange_Load(object sender, EventArgs e)
         {
-            label1.Text = " مقدار قبلی در    " + _TblName + ":" + _TblColVar;
+            label1.Text = " مقدار قبلی در " + _TblName + ":'\n'" + _TblColVar;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -38,16 +40,36 @@ namespace DataBace
             PDBC db = new PDBC();
             db.Connect();
             string result = "امکان پذیر نیست";
-            if (_TblType)
+            
+            if (_TblIsInt)
             {
                 int flag = 0;
                 if (Int32.TryParse(textBox1.Text, out flag))
-                    result = db.Script($"UPDATE [{_TblName}] SET [{_TblCell}] = {flag} WHERE {_TblWhere}");
+                {
+                    if (string.IsNullOrWhiteSpace(textBox1.Text))
+                    {
+                        result = db.Script($"UPDATE [{_TblName}] SET [{_TblCell}] = {_TblCellEmpty} WHERE {_TblWhere}");
+                    }
+                    else
+                    {
+                        result = db.Script($"UPDATE [{_TblName}] SET [{_TblCell}] = {flag} WHERE {_TblWhere}");
+                    }
+
+                }
+
             }
             else
             {
-                result = db.Script($"UPDATE [{_TblName}] SET [{_TblCell}] = N'{textBox1.Text}' WHERE {_TblWhere}");
+                if (string.IsNullOrWhiteSpace(textBox1.Text))
+                {
+                    result = db.Script($"UPDATE [{_TblName}] SET [{_TblCell}] = N'{_TblCellEmpty}' WHERE {_TblWhere}");
+                }
+                else
+                {
+                    result = db.Script($"UPDATE [{_TblName}] SET [{_TblCell}] = N'{textBox1.Text}' WHERE {_TblWhere}");
+                }
             }
+        
             db.DC();
             MessageBox.Show(result);
             this.Close();

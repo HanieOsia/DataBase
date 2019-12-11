@@ -22,13 +22,14 @@ namespace DataBace
         {
             ComboBoxObject cbo = new ComboBoxObject();
             cbo.Text = "جایگاه های کاری";
-            cbo.Value = "tblJob";
+            cbo.Value = "tblJob2";
             ComboBoxObject cbo2 = new ComboBoxObject();
             cbo2.Text = "کاربر ها";
-            cbo2.Value = "tbl-name";
+            cbo2.Value = "tblName1";
+
             comboBox1.Items.Add(cbo);
             comboBox1.Items.Add(cbo2);
-            //comboBox1.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 0;
 
         }
 

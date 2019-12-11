@@ -33,10 +33,10 @@ namespace DataBace
         {
             PDBC dBC = new PDBC();
             dBC.Connect();
-            TblName = "tbl - name";
-            DataTable dataTable = dBC.Select("SELECT [ID],[Name],[Last Name] FROM [tbl-name]");
+            TblName = "tblName1";
+            DataTable dataTable = dBC.Select("SELECT [ID],[Name],[LastName] FROM [tblName1]");
             dBC.DC();
-            label1.Text = "On Table :\ntbl-name ";
+            label1.Text = "On Table :\ntblName1 ";
             dataGridView1.DataSource = dataTable;
         }
 
@@ -53,36 +53,41 @@ namespace DataBace
             frm_insert.ShowDialog();
         }
 
-        private void DataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void BtnChang_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int i = e.RowIndex;
             int j = e.ColumnIndex;
 
+
             FrmChange frmChange;
+            
             if (dataGridView1.Columns[j].HeaderText.ToString().ToUpper().Contains("ID"))
             {
+                if (dataGridView1.Columns[j].HeaderText.ToString().ToUpper()!="ID")
+                {
+                    frmChange = new FrmChange(TblName, dataGridView1.Columns[j].HeaderText, dataGridView1.Rows[i].Cells[j].Value.ToString(),
+                       $"id ={dataGridView1.Rows[i].Cells[0].Value.ToString()}", true);
+                    frmChange.ShowDialog();
+                }
 
-                frmChange = new FrmChange(TblName, dataGridView1.Columns[j].HeaderText, dataGridView1.Rows[i].Cells[j].Value.ToString(),
-                    $"id ={dataGridView1.Rows[i].Cells[0].Value.ToString()}",true);
             }
             else
             {
                 frmChange = new FrmChange(TblName, dataGridView1.Columns[j].HeaderText, dataGridView1.Rows[i].Cells[j].Value.ToString(),
-                    $"id ={dataGridView1.Rows[i].Cells[0].Value.ToString()}",false);
+                    $"id ={dataGridView1.Rows[i].Cells[0].Value.ToString()}", false);
+                frmChange.ShowDialog();
             }
-            frmChange.ShowDialog();
 
             PDBC dBC = new PDBC();
             dBC.Connect();
             DataTable dataTable = dBC.Select($"Select * From {TblName}");
             dBC.DC();
             dataGridView1.DataSource = dataTable;
-            
-
-        }
-
-        private void BtnChang_Click(object sender, EventArgs e)
-        {
 
         }
     }
